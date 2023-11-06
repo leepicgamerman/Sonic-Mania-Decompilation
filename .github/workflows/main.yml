@@ -6,6 +6,8 @@ jobs:
   mania:
     runs-on: windows-2022
     steps:
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
       - name: Build Mania
         run: |
           msbuild SonicMania.sln -target:SonicMania-v5U /p:Configuration=Release /p:Platform=x86 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
