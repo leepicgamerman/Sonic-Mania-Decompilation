@@ -1,0 +1,23 @@
+name: Build Mania
+on:
+  push:
+    branches:
+      - main
+      - continuous-delivery
+
+jobs:
+  mania:
+    runs-on: windows-2022
+    steps:
+      - name: Build Mania
+        run: |
+          msbuild SonicMania.sln -target:SonicMania-v5U /p:Configuration=Release /p:Platform=x86 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
+      - name: Move artifacts
+        run: |
+          mkdir artifacts
+          move ./build/Win32/Release/*.dll ./artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: mania
+          path: artifacts
