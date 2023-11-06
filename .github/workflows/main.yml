@@ -1,9 +1,6 @@
 name: Build Mania
 on:
-  push:
-    branches:
-      - main
-      - continuous-delivery
+  workflow_dispatch
 
 jobs:
   mania:
