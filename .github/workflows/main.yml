@@ -6,6 +6,10 @@ jobs:
   mania:
     runs-on: windows-2022
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: recursive
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Build Mania
