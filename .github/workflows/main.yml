@@ -14,11 +14,11 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Build Mania
         run: |
-          msbuild SonicMania.sln -target:SonicMania-v5U /p:Configuration=Release /p:Platform=x86 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
+          msbuild SonicMania.sln -target:SonicMania-v5U /p:Configuration=Release /p:Platform=x64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
       - name: Move artifacts
         run: |
           mkdir artifacts
-          move ./build/Win32/Release/* ./artifacts
+          move ./build/Win32/Release/*.dll ./artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v1.0.0
         with:
